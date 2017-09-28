@@ -1,0 +1,22 @@
+{
+  "expo": {
+    "name": "conpago-proof",
+    "description": "An empty new project",
+    "slug": "conpago-proof",
+    "privacy": "public",
+    "sdkVersion": "21.0.0",
+    "version": "1.0.0",
+    "orientation": "landscape",
+    "primaryColor": "#cccccc",
+    "icon": "./assets/icons/conpago-logo.png",
+    "loading": {
+      "icon": "./assets/icons/conpago-logo.png"
+    },
+    "packagerOpts": {
+      "assetExts": ["ttf", "mp4"]
+    },
+    "ios": {
+      "supportsTablet": true
+    }
+  }
+}
