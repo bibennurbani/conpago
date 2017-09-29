@@ -8,12 +8,15 @@
     "version": "1.0.0",
     "orientation": "landscape",
     "primaryColor": "#cccccc",
-    "icon": "./assets/icons/conpago-logo.png",
+    "icon": "./src/assets/icons/conpago-logo.png",
     "loading": {
-      "icon": "./assets/icons/conpago-logo.png"
+      "icon": "./src/assets/icons/conpago-logo.png"
     },
     "packagerOpts": {
-      "assetExts": ["ttf", "mp4"]
+      "assetExts": [
+        "ttf",
+        "mp4"
+      ]
     },
     "ios": {
       "supportsTablet": true

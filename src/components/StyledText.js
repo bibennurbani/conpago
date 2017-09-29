@@ -11,3 +11,14 @@ export class MonoText extends React.Component {
         );
     }
 }
+
+export class SampleText extends React.Component {
+    render() {
+        return (
+            <Text
+                {...this.props}
+                style={[this.props.style, { margin: 14 }]}
+            />
+        );
+    }
+}

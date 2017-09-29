@@ -6,10 +6,12 @@ import {
     StyleSheet,
     Text,
     TouchableOpacity,
+    Button,
+    Alert,
     View,
 } from 'react-native';
-import { WebBrowser } from 'expo';
 
+import { WebBrowser } from 'expo';
 import { MonoText } from '../components/StyledText';
 
 export default class MainScreen extends React.Component {
@@ -17,10 +19,14 @@ export default class MainScreen extends React.Component {
         title: 'Home',
     };
 
+    _onPressButton() {
+        Alert.alert('You tapped the button!')
+    }
+
     render() {
         return (
             <View style={styles.container}>
-                <Text>Open up Home.js to start working on your app!</Text>
+                <Text>Hello world!</Text>
             </View>
         );
     }
@@ -60,11 +66,11 @@ export default class MainScreen extends React.Component {
         );
     };
 }
-
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
         backgroundColor: '#fff',
+        flex: 1,
+        flexDirection: 'row',
     },
     developmentModeText: {
         marginBottom: 20,
