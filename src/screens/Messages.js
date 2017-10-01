@@ -14,10 +14,10 @@ import {
 import { WebBrowser } from 'expo';
 import { MonoText } from '../components/StyledText';
 
-export default class MainScreen extends React.Component {
-    // static navigationOptions = {
-    //     title: 'Home',
-    // };
+export default class MessageScreen extends React.Component {
+    static navigationOptions = {
+        title: 'Home',
+    };
 
     _onPressButton() {
         Alert.alert('You tapped the button!')

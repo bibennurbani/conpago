@@ -1,6 +1,7 @@
 import React from 'react';
 import { Platform, StatusBar, StyleSheet, View, Text } from 'react-native';
 import SimpleStack from './navigations/LeftNavigation';
+import SimpleNavigation from './navigations/SimpleNavigation';
 import MainScreen from './screens/Main';
 
 export default class ConpagoApp extends React.Component {
@@ -20,8 +21,9 @@ export default class ConpagoApp extends React.Component {
             return (
                 <View style={styles.container}>
                     {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-                    {Platform.OS === 'android' && <View style={styles.statusBarUnderlay} />}
-                    <MainScreen />
+                    {Platform.OS === 'android' && <View style={styles.statusBarUnderlay} />}       
+                    <MainScreen />                            
+                    <SimpleNavigation />    
                 </View>
             );
         }
