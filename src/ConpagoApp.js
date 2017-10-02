@@ -1,13 +1,16 @@
 import React from 'react';
 import { Platform, StatusBar, StyleSheet, View, Text } from 'react-native';
-import SimpleStack from './navigations/LeftNavigation';
-import SimpleNavigation from './navigations/SimpleNavigation';
-import MainScreen from './screens/Main';
+import { Container } from 'native-base';
+import { AppLoading, Asset, Font, Expo } from 'expo';
+import { Ionicons } from '@expo/vector-icons';
+
+import ConpagoNavigation from './navigations/SimpleNavigation';
 
 export default class ConpagoApp extends React.Component {
     state = {
         isLoadingComplete: false
     }
+
     render() {
         if (!this.state.isLoadingComplete && this.props.skipLoadingScreen) {
             return (
@@ -21,9 +24,8 @@ export default class ConpagoApp extends React.Component {
             return (
                 <View style={styles.container}>
                     {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-                    {Platform.OS === 'android' && <View style={styles.statusBarUnderlay} />}       
-                    <MainScreen />                            
-                    <SimpleNavigation />    
+                    {Platform.OS === 'android' && <View style={styles.statusBarUnderlay} />}
+                    <ConpagoNavigation />
                 </View>
             );
         }
@@ -32,14 +34,22 @@ export default class ConpagoApp extends React.Component {
     _loadResourcesAsync = async () => {
         return Promise.all([
             Asset.loadAsync([
-                require('./assets/icons/app-icon.png'),
+                require('./assets/icons/conpago-logo.png')
             ]),
+            Expo.Font.loadAsync({
+                'Roboto': require('native-base/Fonts/Roboto.ttf'),
+                'Roboto_medium': require('native-base/Fonts/Roboto_medium.ttf'),
+            }),
             Font.loadAsync([
                 // This is the font that we are using for our tab bar
                 Ionicons.font,
                 // We include SpaceMono because we use it in HomeScreen.js. Feel free
                 // to remove this if you are not using it in your app
-                { 'space-mono': require('./assets/fonts/SpaceMono-Regular.ttf') },
+                {
+                    'space-mono': require('./assets/fonts/SpaceMono-Regular.ttf'),
+                    // 'Roboto': require('./assets/fonts/Roboto.ttf'),
+                    // 'Roboto_medium': require('./assets/fonts/Roboto_medium.ttf'),
+                },
             ]),
         ]);
     };
@@ -59,8 +69,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
     },
     statusBarUnderlay: {
         height: 24,

@@ -1,81 +1,38 @@
-/**
- * @flow
- */
-
 import React from 'react';
-import { Button, ScrollView } from 'react-native';
-import { StackNavigator } from 'react-navigation';
-import SampleText from '../components/StyledText';
+import { View, StyleSheet } from 'react-native';
+import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text } from 'native-base';
+import { Col, Row, Grid } from 'react-native-easy-grid';
 
-const MyNavScreen = ({navigation}) => (
-  <ScrollView>
-    <SampleText>Test ajalah</SampleText>
-    <Button
-      onPress={() => navigation.navigate('Profile', { name: 'Jane' })}
-      title="Go to a profile screen"
-    />
-    <Button
-      onPress={() => navigation.navigate('Photos', { name: 'Jane' })}
-      title="Go to a photos screen"
-    />
-    <Button onPress={() => navigation.goBack(null)} title="Go back" />
-  </ScrollView>
-);
+import { WebBrowser } from 'expo';
+import { MonoText } from '../components/StyledText';
 
-const MyHomeScreen = ({ navigation }) => (
-  <MyNavScreen banner="Home Screen" navigation={navigation} />
-);
-MyHomeScreen.navigationOptions = {
-  title: 'Welcome',
-};
+export class LeftNavigation extends React.Component {
+  _onPressButton() {
+    Alert.alert('You tapped the button!')
+  }
 
-const MyPhotosScreen = ({ navigation }) => (
-  <MyNavScreen
-    banner={`${navigation.state.params.name}'s Photos`}
-    navigation={navigation}
-  />
-);
-MyPhotosScreen.navigationOptions = {
-  title: 'Photos',
-};
+  render() {
+    return (
+      <View style={styles.container}>
+        <Button iconLeft style={styles.navButton}>
+          <Icon name='calendar' />
+          <Text>Calendar</Text>
+        </Button>
+        <Button iconLeft style={styles.navButton}>
+          <Icon name='mail' />
+          <Text>Messages</Text>
+        </Button>
+      </View >
+    );
+  }
+}
 
-const MyProfileScreen = ({ navigation }) => (
-  <MyNavScreen
-    banner={`${navigation.state.params.mode === 'edit' ? 'Now Editing ' : ''}${navigation.state.params.name}'s Profile`}
-    navigation={navigation}
-  />
-);
-
-MyProfileScreen.navigationOptions = props => {
-  const { navigation } = props;
-  const { state, setParams } = navigation;
-  const { params } = state;
-  return {
-    headerTitle: `${params.name}'s Profile!`,
-    // Render a button on the right side of the header.
-    // When pressed switches the screen to edit mode.
-    headerRight: (
-      <Button
-        title={params.mode === 'edit' ? 'Done' : 'Edit'}
-        onPress={() =>
-          setParams({ mode: params.mode === 'edit' ? '' : 'edit' })}
-      />
-    ),
-  };
-};
-
-const SimpleStack = StackNavigator({
-  Home: {
-    screen: MyHomeScreen,
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'column',
   },
-  Profile: {
-    path: 'people/:name',
-    screen: MyProfileScreen,
-  },
-  Photos: {
-    path: 'photos/:name',
-    screen: MyPhotosScreen,
-  },
+  navButton: {
+    flex: 0.5
+  }
 });
-
-export default SimpleStack;
